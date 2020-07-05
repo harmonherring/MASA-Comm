@@ -1,3 +1,4 @@
+#include <tomcrypt.h>
 #include <LoRa_STM32.h>
 
 int counter = 0;

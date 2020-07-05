@@ -21,6 +21,7 @@ Huge thanks to the maintainers of the following projects and libraries used in t
 - [Arduino LoRa For STM32F103CB](https://github.com/armtronix/arduino-LoRa-STM32)
     - [Arduino LoRa](https://github.com/sandeepmistry/arduino-LoRa)
 - [Arduino STM32](https://github.com/rogerclarkmelbourne/Arduino_STM32.git)
+- [LibTomCrypt](https://github.com/libtom/libtomcrypt)
 
 ## Setup
 
@@ -75,7 +76,39 @@ git clone https://github.com/armtronix/arduino-LoRa-STM32 LoRa-STM32
 
 Now for the modification. The LoRa STM32F103C library uses PC13 for the default reset pin, but on the STM32F103C8T6, PC13 is an LED. Go into the `src` directory of the repository you just cloned and open up the file `LoRa_STM32.h` for editing. Change `#define LORA_DEFAULT_RESET_PIN PC13` to `#define LORA_DEFAULT_RESET_PIN PC14`.
 
-Now you can use the functions provided by that library.
+Restart the Arduino IDE, and you should be able to use the functions made available by this library.
+
+### LibTomCrypt
+
+You'll need to clone the libtomcrypt repository into the Arduino libraries directory. Currently we're using the `develop` branch. We may switch to the `master` branch for stability.
+
+```
+cd ~\Documents\Arduino\libraries
+git clone https://github.com/libtom/libtomcrypt
+```
+
+Go into the directory of the repository you just cloned, and in the top level directory, create a `library.properties` with data like this.
+
+```
+name=TomCrypt
+version=1.0.0
+author=Tom
+maintainer=xxx
+sentence=xxx
+paragraph=xxx
+category=Device Control
+url=xxx
+architectures=*
+include=tomcrypt.h
+```
+
+Copy all of the header files from the `src/header` directory into the `src` directory. The Arduino IDE expects headers to be there.
+
+Edit `tomcrypt_custom.h`. After the include guard (`#include <pthread.h>`) add a new line with `#define LTC_SOURCE`.
+
+Thank you to member arduarn of the Arduino forum for the [detailed help](https://forum.arduino.cc/index.php?topic=513656.0) getting this set up.
+
+Restart the Arduino IDE, and you should be able to use the functions made available by this library.
 
 #### Running the Source Code
 
