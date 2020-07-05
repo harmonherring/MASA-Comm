@@ -24,7 +24,7 @@ Huge thanks to the maintainers of the following projects and libraries used in t
 
 ## Setup
 
-I set up the wiring up as follows. Depending on the module you're using, `VIN` may be labeled as `VCC`, `CS` may be labeled as `NSS`, and `GPx` may be labeled as `DIOx`.
+I set up the wiring up as follows. Depending on the module you're using, `VIN` may be labeled as `VCC`, `CS` may be labeled as `NSS`, and `Gx` may be labeled as `DIOx`.
 
 | Adafruit RFM96W (SX1276) | STM32F103C8T6 Blue Pill |
 | :---: | :---: |
