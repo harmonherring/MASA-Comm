@@ -42,7 +42,7 @@ I set up the wiring up as follows. Depending on the module you're using, `VIN` m
 
 You'll need to solder an antenna to your radio module as well. Currently I'm using some copper wire out of an RJ11 cable and the performance is pretty bad, so maybe don't do that.
 
-### Arduino IDE
+### Arduino IDE (Not Recommended)
 
 This assumes you already have the Arduino IDE installed.
 
@@ -110,6 +110,8 @@ Thank you to member arduarn of the Arduino forum for the [detailed help](https:/
 
 Restart the Arduino IDE, and you should be able to use the functions made available by this library.
 
-#### Running the Source Code
+#### Running the MASA Code
 
-If you've done the above steps correctly, you should be able to open up the desired `.ino` file from the `src` directory in the Arduino IDE, click the upload button, and run the code on your Blue Pill.
+Create a new Arduino project and copy the contents of `src/main.cpp` into your main file. Comment out the `#include <Arduino.h>` line. Then, you'll need to add project dependencies from the `lib` directory (that aren't listed above) into your project with `Sketch > Add File` and modify imports accordingly. 
+
+If you've done the above steps correctly, you should be able to run the code on your Blue Pill.
