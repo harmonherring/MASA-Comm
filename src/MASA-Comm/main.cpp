@@ -1,3 +1,4 @@
+#include <Arduino.h>
 #include <tomcrypt.h>
 #include <LoRa_STM32.h>
 
