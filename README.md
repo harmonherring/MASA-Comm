@@ -42,9 +42,29 @@ I set up the wiring up as follows. Depending on the module you're using, `VIN` m
 
 You'll need to solder an antenna to your radio module as well. Currently I'm using some copper wire out of an RJ11 cable and the performance is pretty bad, so maybe don't do that.
 
+### PlatformIO (Recommended)
+
+PlatformIO is great. Please use it. I wish I had began with it instead of being handicapped by the Arduino IDE.
+
+#### Installation
+
+Install Visual Studio Code, add the PlatformIO extension, and then install the STM32F103 Blue Pill board using their interface (can click the home icon on the bottom toolbar).
+
+#### Config Modification
+
+Modify `platformio.ini` to fit your platform. Many STM32F103C8T6 boards are shipped with 128kb of flash memory instead of the labeled 64kb. Many FTDI programmers will tell you how much flash memory is on the device, so modify the file to fit your case. You can find more information for your board using the [PlatformIO Documentation](https://docs.platformio.org/en/latest/boards/index.html#boards). Despite what the official docs may say, PlatformIO DOES work with the `serial` upload protocol for the Blue Pill F103C8. The other common upload protocol would be `stlink`, please check the documentation for which protocol fits your case.
+
+#### Dependencies
+
+I'll probably add dependencies to the `lib` directory, but that may change. You've been warned :)
+
+#### Running
+
+You should literally just be able to build and upload your code to your device now. There are some buttons on the bottom toolbar that do stuff as well as some hotkeys you can mess around with. Super easy.
+
 ### Arduino IDE (Not Recommended)
 
-This assumes you already have the Arduino IDE installed.
+This assumes you already have the Arduino IDE installed. Please don't use this method and just use PlatformIO.
 
 #### STM32F103 Board Setup
 
