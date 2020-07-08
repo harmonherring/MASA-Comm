@@ -1,0 +1,6 @@
+[submodule "lib/LoRa-STM32"]
+	path = lib/LoRa-STM32
+	url = https://github.com/armtronix/arduino-LoRa-STM32.git
+[submodule "lib/LoRa_STM32"]
+	path = lib/LoRa_STM32
+	url = https://github.com/harmonherring/arduino-LoRa-STM32
