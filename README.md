@@ -64,10 +64,6 @@ Finally, you may need to open up `lib/libtomcrypt/src/tomcrypt.h` and add `#defi
 
 Modify `platformio.ini` to fit your platform. Many STM32F103C8T6 boards are shipped with 128kb of flash memory instead of the labeled 64kb. Many FTDI programmers will tell you how much flash memory is on the device, so modify the file to fit your case. You can find more information for your board using the [PlatformIO Documentation](https://docs.platformio.org/en/latest/boards/index.html#boards). Despite what the official docs may say, PlatformIO DOES work with the `serial` upload protocol for the Blue Pill F103C8. The other common upload protocol would be `stlink`, please check the documentation for which protocol fits your case.
 
-### Dependencies
-
-I'll probably add dependencies to the `lib` directory, but that may change. You've been warned :)
-
 ### Running
 
 You should literally just be able to build and upload your code to your device now. There are some buttons on the bottom toolbar that do stuff as well as some hotkeys you can mess around with. Super easy.
