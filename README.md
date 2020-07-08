@@ -1,7 +1,7 @@
 # MASA LoRa Communication
 Contains communication source files and setup instructions for the MASA project
 
-## Requirements
+# Requirements
 
 - STM32F103Cx "Blue Pill" Board
     - Don't really know how library support looks for other boards, so some modifications may be required if you use something else.
@@ -13,9 +13,8 @@ Contains communication source files and setup instructions for the MASA project
     - This project uses the Adafruit RFM96W LoRa Radio Transceiver Breakout 433 MHz. Some small modifications will be required if you're using a different module.
     - Should also work with HopeRF modules [as described here.](https://alexbirkett.github.io/microcontroller/2018/12/15/blue_pill_hoperf_lora_tx_rx_with_arduino.html#:~:text=Blue%20Pill%20Lora%20Transmitter%20Receiver%20with%20HopeRF%20module%20and%20Arduino%20IDE,-I%20became%20interested&text=The%20Blue%20Pill%20is%20not,racing%20quads%20and%20RC%20planes.)
 - (Optional) It may be helpful to have a known-working system. I also purchased the RFM9x Raspberry Pi bonnet from Adafruit to reduce the number of unknown variables. They have an easy-to-use Python library, and the setup is very easy.
-- Please don't do development on Windows. I don't want to wrestly with it and won't write any documentation past getting set up with the Arduino IDE. Building certain dependencies is a pain in the ass. Just use something else.
 
-## Libraries
+# Libraries
 
 Huge thanks to the maintainers of the following projects and libraries used in this project.
 
@@ -24,7 +23,7 @@ Huge thanks to the maintainers of the following projects and libraries used in t
 - [Arduino STM32](https://github.com/rogerclarkmelbourne/Arduino_STM32.git)
 - [LibTomCrypt](https://github.com/libtom/libtomcrypt)
 
-## Setup
+# Setup
 
 I set up the wiring up as follows. Depending on the module you're using, `VIN` may be labeled as `VCC`, `CS` may be labeled as `NSS`, and `Gx` may be labeled as `DIOx`.
 
@@ -43,31 +42,41 @@ I set up the wiring up as follows. Depending on the module you're using, `VIN` m
 
 You'll need to solder an antenna to your radio module as well. Currently I'm using some copper wire out of an RJ11 cable and the performance is pretty bad, so maybe don't do that.
 
-### PlatformIO (Recommended)
+## PlatformIO (Recommended)
 
 PlatformIO is great. Please use it. I wish I had began with it instead of being handicapped by the Arduino IDE.
 
-#### Installation
+### Installation
 
 Install Visual Studio Code, add the PlatformIO extension, and then install the ST STM32 embedded platform using their interface (can click the home icon on the bottom toolbar once you've opened a project).
 
-#### Config Modification
+### Dependency Setup
+
+Once you've cloned this repository, run `git submodule init` and `git submodule update`. This will download the git submodules that this project requires.
+
+You need to copy all headers from `lib/libtomcrypt/src/headers` to `lib/libtomcrypt/src/` so that PlatformIO can find them. 
+
+Next, open up `lib/libtomcrypt/src/tomcrypt_custom.h` and insert `#define LTC_SOURCE` on the line below `#include <pthread.h>`.
+
+Finally, you may need to open up `lib/libtomcrypt/src/tomcrypt.h` and add `#define _POSIX_C_SOURCE 199309L` to the top of the file.
+
+### Config Modification
 
 Modify `platformio.ini` to fit your platform. Many STM32F103C8T6 boards are shipped with 128kb of flash memory instead of the labeled 64kb. Many FTDI programmers will tell you how much flash memory is on the device, so modify the file to fit your case. You can find more information for your board using the [PlatformIO Documentation](https://docs.platformio.org/en/latest/boards/index.html#boards). Despite what the official docs may say, PlatformIO DOES work with the `serial` upload protocol for the Blue Pill F103C8. The other common upload protocol would be `stlink`, please check the documentation for which protocol fits your case.
 
-#### Dependencies
+### Dependencies
 
 I'll probably add dependencies to the `lib` directory, but that may change. You've been warned :)
 
-#### Running
+### Running
 
 You should literally just be able to build and upload your code to your device now. There are some buttons on the bottom toolbar that do stuff as well as some hotkeys you can mess around with. Super easy.
 
-### Arduino IDE (Not Recommended)
+## Arduino IDE (Not Recommended)
 
 This assumes you already have the Arduino IDE installed. Please don't use this method and just use PlatformIO.
 
-#### STM32F103 Board Setup
+### STM32F103 Board Setup
 
 You'll need to add support for STM32 based board on the Arduino IDE. Navigate to your Arduino Hardware directory. On Windows, this is located at `C:\Users\[USER]\Documents\Arduino\hardware\`. If the hardware directory isn't already there, create it. Now you can clone Roger Clark's repository of hardware files to support STM32F103 boards.
 
@@ -84,7 +93,7 @@ Open the Tools menu and select the appropriate board and settings for your case.
 
 ![Image of My Settings](./assets/Board_Settings.png)
 
-#### LoRa Library Setup
+### LoRa Library Setup
 
 You'll need to first add the library we're using for LoRa communication, and then you'll need to make a small modification to it.  
 
@@ -131,7 +140,7 @@ Thank you to member arduarn of the Arduino forum for the [detailed help](https:/
 
 Restart the Arduino IDE, and you should be able to use the functions made available by this library.
 
-#### Running the MASA Code
+### Running the MASA Code
 
 Create a new Arduino project and copy the contents of `src/main.cpp` into your main file. Comment out the `#include <Arduino.h>` line. Then, you'll need to add project dependencies from the `lib` directory (that aren't listed above) into your project with `Sketch > Add File` and modify imports accordingly. 
 

@@ -4,3 +4,6 @@
 [submodule "lib/LoRa_STM32"]
 	path = lib/LoRa_STM32
 	url = https://github.com/harmonherring/arduino-LoRa-STM32
+[submodule "lib/libtomcrypt"]
+	path = lib/libtomcrypt
+	url = https://github.com/libtom/libtomcrypt.git
