@@ -13,6 +13,7 @@ Contains communication source files and setup instructions for the MASA project
     - This project uses the Adafruit RFM96W LoRa Radio Transceiver Breakout 433 MHz. Some small modifications will be required if you're using a different module.
     - Should also work with HopeRF modules [as described here.](https://alexbirkett.github.io/microcontroller/2018/12/15/blue_pill_hoperf_lora_tx_rx_with_arduino.html#:~:text=Blue%20Pill%20Lora%20Transmitter%20Receiver%20with%20HopeRF%20module%20and%20Arduino%20IDE,-I%20became%20interested&text=The%20Blue%20Pill%20is%20not,racing%20quads%20and%20RC%20planes.)
 - (Optional) It may be helpful to have a known-working system. I also purchased the RFM9x Raspberry Pi bonnet from Adafruit to reduce the number of unknown variables. They have an easy-to-use Python library, and the setup is very easy.
+- Please don't do development on Windows. I don't want to wrestly with it and won't write any documentation past getting set up with the Arduino IDE. Building certain dependencies is a pain in the ass. Just use something else.
 
 ## Libraries
 
@@ -48,7 +49,7 @@ PlatformIO is great. Please use it. I wish I had began with it instead of being 
 
 #### Installation
 
-Install Visual Studio Code, add the PlatformIO extension, and then install the STM32F103 Blue Pill board using their interface (can click the home icon on the bottom toolbar).
+Install Visual Studio Code, add the PlatformIO extension, and then install the ST STM32 embedded platform using their interface (can click the home icon on the bottom toolbar once you've opened a project).
 
 #### Config Modification
 
